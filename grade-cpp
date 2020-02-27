@@ -1,0 +1,15 @@
+#!/bin/bash
+# A utility for compiling, running and grading C++ assignments.
+
+printf "\n\n*** Grade C++ exercise *** \n\n"
+exe() { echo "! ${@/eval/}" ; "$@" ; }
+
+rm -f a.out
+exe clang++-5.0 -std=c++17 $@
+exe ./a.out
+ERROR=$?
+if [ $ERROR -ne 0 ] 
+	then printf "\n*** Grade: 0 ***\n"
+fi
+rm -f a.out
+printf "\n\n"
